@@ -63,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
           AreaSeries<ChartData, String>(
             dataSource: chartData,
             // Apply the gradient to the area series
+
             gradient: gradientColors,
             onCreateShader: (ShaderDetails details) {
               return ui.Gradient.linear(details.rect.bottomLeft,
