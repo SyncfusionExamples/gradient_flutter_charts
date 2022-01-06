@@ -56,42 +56,56 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-          child: SfCartesianChart(
-        primaryXAxis: CategoryAxis(),
-        primaryYAxis: NumericAxis(),
-        series: <ChartSeries<ChartData, String>>[
-          AreaSeries<ChartData, String>(
-            dataSource: chartData,
-            // Apply the gradient to the area series
-
-            gradient: gradientColors,
-            onCreateShader: (ShaderDetails details) {
-              return ui.Gradient.linear(details.rect.bottomLeft,
-                  details.rect.bottomRight, const <Color>[
-                Color.fromRGBO(116, 182, 194, 1),
-                Color.fromRGBO(75, 189, 138, 1),
-                Color.fromRGBO(75, 189, 138, 1),
-                Color.fromRGBO(255, 186, 83, 1),
-                Color.fromRGBO(255, 186, 83, 1),
-                Color.fromRGBO(194, 110, 21, 1),
-                Color.fromRGBO(194, 110, 21, 1),
-                Color.fromRGBO(116, 182, 194, 1),
-              ], <double>[
-                0.1,
-                0.1,
-                0.4,
-                0.4,
-                0.7,
-                0.7,
-                0.9,
-                0.9
-              ]);
-            },
-            xValueMapper: (ChartData sales, _) => sales.x,
-            yValueMapper: (ChartData sales, _) => sales.y,
-          )
-        ],
-      )),
+          child: Column(children: [
+        SfCartesianChart(
+          title: ChartTitle(text: 'Apply gradient using gradient property'),
+          primaryXAxis: CategoryAxis(),
+          primaryYAxis: NumericAxis(),
+          series: <ChartSeries<ChartData, String>>[
+            AreaSeries<ChartData, String>(
+              dataSource: chartData,
+              // Apply the gradient to the area series
+              gradient: gradientColors,
+              xValueMapper: (ChartData sales, _) => sales.x,
+              yValueMapper: (ChartData sales, _) => sales.y,
+            )
+          ],
+        ),
+        SfCartesianChart(
+          title: ChartTitle(text: 'Apply gradient using callback'),
+          primaryXAxis: CategoryAxis(),
+          primaryYAxis: NumericAxis(),
+          series: <ChartSeries<ChartData, String>>[
+            AreaSeries<ChartData, String>(
+              dataSource: chartData,
+              onCreateShader: (ShaderDetails details) {
+                return ui.Gradient.linear(details.rect.bottomLeft,
+                    details.rect.bottomRight, const <Color>[
+                  Color.fromRGBO(116, 182, 194, 1),
+                  Color.fromRGBO(75, 189, 138, 1),
+                  Color.fromRGBO(75, 189, 138, 1),
+                  Color.fromRGBO(255, 186, 83, 1),
+                  Color.fromRGBO(255, 186, 83, 1),
+                  Color.fromRGBO(194, 110, 21, 1),
+                  Color.fromRGBO(194, 110, 21, 1),
+                  Color.fromRGBO(116, 182, 194, 1),
+                ], <double>[
+                  0.1,
+                  0.1,
+                  0.4,
+                  0.4,
+                  0.7,
+                  0.7,
+                  0.9,
+                  0.9
+                ]);
+              },
+              xValueMapper: (ChartData sales, _) => sales.x,
+              yValueMapper: (ChartData sales, _) => sales.y,
+            )
+          ],
+        )
+      ])),
     );
   }
 }
